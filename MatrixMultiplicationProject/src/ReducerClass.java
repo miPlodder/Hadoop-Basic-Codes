@@ -19,8 +19,8 @@ public class ReducerClass extends MapReduceBase implements Reducer<Text, Text, T
 		
 		String whichMatrix = "";
 
-		int[] a = new int[4];
-		int[] b = new int[4];
+		int[] a = new int[3];
+		int[] b = new int[3];
 
 		while (value.hasNext()) {
 
@@ -68,7 +68,7 @@ public class ReducerClass extends MapReduceBase implements Reducer<Text, Text, T
 
 		}
 
-		for (int i = 0; i < 4; i++) {
+		for (int i = 0; i < a.length; i++) {
 
 			sum += (a[i] * b[i]);
 
