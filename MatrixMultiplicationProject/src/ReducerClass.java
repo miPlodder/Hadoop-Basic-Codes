@@ -1,9 +1,5 @@
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Iterator;
-
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.MapReduceBase;
 import org.apache.hadoop.mapred.OutputCollector;
@@ -20,10 +16,11 @@ public class ReducerClass extends MapReduceBase implements Reducer<Text, Text, T
 		int sum = 0;
 
 		int row = 0, col = 0, val = 0;
+		
 		String whichMatrix = "";
 
-		int[] a = new int[2];
-		int[] b = new int[2];
+		int[] a = new int[4];
+		int[] b = new int[4];
 
 		while (value.hasNext()) {
 
@@ -71,7 +68,7 @@ public class ReducerClass extends MapReduceBase implements Reducer<Text, Text, T
 
 		}
 
-		for (int i = 0; i < 2; i++) {
+		for (int i = 0; i < 4; i++) {
 
 			sum += (a[i] * b[i]);
 

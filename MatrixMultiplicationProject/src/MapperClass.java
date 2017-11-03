@@ -12,9 +12,9 @@ public class MapperClass extends MapReduceBase implements Mapper<LongWritable, T
 	public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter)
 			throws IOException {
 
-		int x = 2;
-		int y = 2;
-		int z = 2;
+		int x = 4; //row of a
+		int y = 4; //col of a, row of b
+		int z = 4; //col of b
 
 		String[] input = value.toString().split(",");
 
