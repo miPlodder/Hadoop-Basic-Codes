@@ -22,13 +22,13 @@ public class ReducerClass extends MapReduceBase implements Reducer<Text, Text, T
 		int row = 0, col = 0, val = 0;
 		String whichMatrix = "";
 
+		int[] a = new int[2];
+		int[] b = new int[2];
+
 		while (value.hasNext()) {
 
 			String[] input = value.next().toString().split(",");
 
-			ArrayList<Integer> a = new ArrayList<Integer>(2), b = new ArrayList<Integer>(2);
-			
-			
 			int counter = 0;
 
 			for (String item : input) {
@@ -51,33 +51,36 @@ public class ReducerClass extends MapReduceBase implements Reducer<Text, Text, T
 				}
 
 				if (counter == 3)
-					sum += Integer.parseInt(item.trim());
+					val = Integer.parseInt(item.trim());
 
 				counter++;
 
 			}
-			
-			if(whichMatrix.equals("a")) {
-				
-				//a.add(col, val);
-				
-			}
-			
-			if(whichMatrix.equals("b")) {
-				
-				//b.add(row, val);
+
+			if (whichMatrix.equals("a")) {
+
+				a[col] = val;
 				
 			}
 
-			for (int i = 0; i < a.size(); i++) {
+			if (whichMatrix.equals("b")) {
 
-				sum += (a.get(i) * b.get(i));
+				b[row] = val;
 
 			}
 
-			//output.collect(key, new Text(whichMatrix+","+row+","+col+","+sum));
-			output.collect(key, new Text(a.size()+","+b.size()));
 		}
 
+		for (int i = 0; i < 2; i++) {
+
+			sum += (a[i] * b[i]);
+
+			//output.collect(key, new Text(a[i] + "," + b[i] + "," + sum));
+		}
+		// output.collect(key, new Text(a.size()+","+b.size()));
+		 //output.collect(key, new Text(whichMatrix + "," + row + "," + col + " = " + sum));
+	
+		output.collect(key, new Text(String.valueOf(sum)));
+		
 	}
 }
